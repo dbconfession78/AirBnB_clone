@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Module: console
+class HBNBCommand: basic command interpreter, which
+inherits from the `cmd` module
+"""
 import cmd
 
 
