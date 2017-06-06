@@ -17,9 +17,10 @@ class HBNBCommand(cmd.Cmd):
     """
     console class used to interface with HBNB
     """
-
+    
     def do_EOF(self, line):
-        """EOF command to exit the program\n"""
+        """EOF command and ctrl+D to halt process and exit console\n"""
+        print()
         return True
 
     def do_quit(self, line):
