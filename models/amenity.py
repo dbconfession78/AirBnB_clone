@@ -2,13 +2,14 @@
 """
 Module: amenity
 """
-from models import storage
+from models.base_model import BaseModel
 
 
-class Amenity:
+class Amenity(BaseModel):
     """
+    Amenity class
     """
+    name = ""
 
-    def save()
-    """
-    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
