@@ -6,8 +6,11 @@ Import class
 	>>> HBNBCommand  = __import__("console").HBNBCommand
         >>> import unittest
 
-Check for documentation
+Check for class documentation
 -----------------------
+	>>> print(len(HBNBCommand.__doc__) > 0)
+	True
+
 	>>> print(len(HBNBCommand.__doc__) > 0)
 	True
 
