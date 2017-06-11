@@ -4,3 +4,5 @@ test_*
 test.*
 __pycache__
 file.json
+*MINE*
+sandbox.py
