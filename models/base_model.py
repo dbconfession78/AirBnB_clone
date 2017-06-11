@@ -4,7 +4,7 @@ Module; base_model
 """
 import uuid
 from datetime import datetime
-from models import storage
+import models
 
 dt_format = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -24,14 +24,14 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())  # obj to str
             self.created_at = datetime.now()  # obj
-            storage.new(self)
+            models.storage.new(self)
 
     def save(self):
         """ updates the public instance attribute
         `updated_at` with the current datetime
         """
         self.updated_at = datetime.now()  # as obj
-        storage.save()
+        models.storage.save()
 
     def to_json(self):
         """
