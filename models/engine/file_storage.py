@@ -73,13 +73,10 @@ class FileStorage:
 
                 try:
                     loaded[_id]["created_at"] = datetime.strptime(
-                    loaded[_id]["created_at"], dt_format)
+                        loaded[_id]["created_at"], dt_format)
                     loaded[_id]["updated_at"] = datetime.strptime(
                         loaded[_id]["updated_at"], dt_format)
                 except:
                     pass
- #                   print("Error: unable to deserialize current and/or\
- #updated time")
-  #                  exit(-1)
                 cls = loaded[_id].pop("__class__", None)
                 FileStorage.__objects[_id] = self.__class_models[cls](**v)
