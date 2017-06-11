@@ -16,11 +16,8 @@ class FileStorage:
     - save: converts obj dict to JSON and writes to file
     - load: reads file and converts JSON to object dict
     """
-    def __init__(self):
-        """
-        """
-        self.__file_path = "file.json"
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
         """
