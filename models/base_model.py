@@ -8,13 +8,12 @@ import uuid
 from datetime import datetime
 import models
 
-dt_format = "%Y-%m-%dT%H:%M:%S.%f"
-
 
 class BaseModel:
-    """
-    BaseModel Class
-    """
+    """BaseModel Class"""
+
+    dt_format = "%Y-%m-%dT%H:%M:%S.%f"
+
     def __init__(self, *args, **kwargs):
         """
         BaseModel initializer
