@@ -15,6 +15,7 @@ The command interpreter starts when running `./console.py`.
 It can work both in interactive and non interactive mode (see examples).
 The following commands have been implemented:
 
+####     how to use it
 | Command  | Syntax                        |Definition                                    |  
 |:-------: | ------------------------------|----------------|
 | `help`   |`help [command]`               |to get help about other commands.             |  
@@ -23,9 +24,6 @@ The following commands have been implemented:
 |`show`    |`show ??`                      |prints the string representation of an object|
 | `destroy`|`delete` `ClassName` `id`      |deletes an object|
 |`all`     |`all [ClassName]`              |shows all representations of objects|
-|`update`  |||
-
-####     how to use it
-The command interpreter ...
+|`update`  |||`update` `ClassName` `id` `attr key`` ``attr val``
 
 ####     examples
