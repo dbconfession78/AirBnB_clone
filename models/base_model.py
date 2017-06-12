@@ -12,7 +12,7 @@ import models
 class BaseModel:
     """BaseModel Class"""
 
-    dt_format = "%Y-%m-%dT%H:%M:%S.%f"
+    dt_format = "%Y-%m-%dT%H:%M:%S.%f"  # move back to global after test
 
     def __init__(self, *args, **kwargs):
         """
@@ -20,7 +20,7 @@ class BaseModel:
         - if k/w args passed in, set class dict to args
         - if k/w args not passed in, set new uuid and current time
         """
-        if kwargs:
+        if kwargs > 0:   # back to if kwargs after test
             if "created_at" in kwargs:
                 self.__dict__ = kwargs
         else:
