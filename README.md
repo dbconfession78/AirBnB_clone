@@ -24,6 +24,6 @@ The following commands have been implemented:
 |`show`    |`show ??`                      |prints the string representation of an object|
 | `destroy`|`delete` `ClassName` `id`      |deletes an object|
 |`all`     |`all [ClassName]`              |shows all representations of objects|
-|`update`  |||`update` `ClassName` `id` `attr key`` ``attr val``
+|`update`  |`update` `ClassName` `id` `attr key`` ``attr val``||
 
 ####     examples
