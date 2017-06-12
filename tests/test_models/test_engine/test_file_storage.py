@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-Module: Unit Testing for City Class
+Module: Unit Testing for FileStorage
 """
 import unittest
-from models import city
+from models.engine import file_storage
 from datetime import datetime
 
-City = city.City
+FS = file_storage.FileStorage
 
 
 class TestDocumentation(unittest.TestCase):
@@ -18,7 +18,7 @@ class TestDocumentation(unittest.TestCase):
 
         print("\n")
         print("=======================================")
-        print("                  City                 ")
+        print("              FileStorage              ")
         print("           Documentation Tests         ")
         print("=======================================")
         print("")
@@ -26,24 +26,24 @@ class TestDocumentation(unittest.TestCase):
     def test_module_doc(self):
         """ module documentation """
         expected = True
-        got = len(city.__doc__) > 0
+        got = len(file_storage.__doc__) > 0
         self.assertEqual(expected, got)
 
     def test_class_doc(self):
         """class documentation"""
         expected = True
-        got = len(City.__doc__) > 0
+        got = len(FileStorage.__doc__) > 0
         self.assertEqual(expected, got)
 
     def test_init_doc(self):
         """__init__() documentation"""
         expected = True
-        got = len(City.__init__.__doc__) > 0
+        got = len(FileStorage.__init__.__doc__) > 0
         self. assertEqual(expected, got)
 
 
-class TestInstantiation(unittest.TestCase):
-    """ test instantiation """
+class TestMethods(unittest.TestCase):
+    """ class method and instantisation tests """
 
     @classmethod
     def setUpClass(cls):
@@ -51,27 +51,27 @@ class TestInstantiation(unittest.TestCase):
 
         print("\n")
         print("=======================================")
-        print("                  City                 ")
+        print("               FileStorage             ")
         print("              Method Tests             ")
         print("=======================================")
         print("")
 
     def test_instantiation(self):
         """ Instantiation"""
-        cty = Cityl()
-        self.assertIsInstance(cty, City)
+        cls = FileStoragel()
+        self.assertIsInstance(cls, FileStorage)
 
     def test_string_format(self):
         """String formatting"""
-        cty = City()
-        expected = "[{}] ({}) {}".format(cty.__class__.__name__,
-                                         str(cty.id), cty.__dict__)
-        got = str(cty)
+        cls = City()
+        expected = "[{}] ({}) {}".format(cls.__class__.__name__,
+                                         str(cls.id), cls.__dict__)
+        got = str(cls)
         self.assertEqual(expected, got)
 
     def test_name_attr(self):
         """name attribute"""
-        cty = City()
+        cls = FileStorage()
         expected = "XXX"
         got = "XXX"
 
@@ -79,7 +79,7 @@ class TestInstantiation(unittest.TestCase):
 
     def test_number_attr(self):
         """number attribute"""
-        cty = City()
+        cls = FileStorage()
         expected = "XXX"
         got = "XXX"
         self.assertEqual(expected, got)
