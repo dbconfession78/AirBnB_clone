@@ -27,8 +27,8 @@ class BaseModel:
                 kwargs["created_at"], dt_format)
             kwargs["updated_at"] = datetime.strptime(
                 kwargs["updated_at"], dt_format)
+            self.__dict__ = kwargs
 #            if "created_at" in kwargs:  # revert to this after test
-                self.__dict__ = kwargs
         else:
             self.id = str(uuid.uuid4())  # obj to str
             self.created_at = datetime.now()  # obj
