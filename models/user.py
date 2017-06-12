@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """eUser class"""
+    """User class"""
     email = ""
     password = ""
     first_name = ""
