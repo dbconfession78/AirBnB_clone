@@ -102,13 +102,13 @@ class HBNBCommand(cmd.Cmd):
         if name:
             if name in class_models:
                 for k, v in store.items():
-                    if name in k:
+                    if type(v).__name__ == class_models[arg[0]].__name__:
+#                    if name in k:
                         print(v)
             else:
                 print("** class doesn't exist **")
         else:
-            for k, v in store.items():
-                print(v)
+            print("** class doesn't exist **")
 
     def do_update(self, args):
         """- Updates instance based on class name+id by adding/updating attr
