@@ -7,12 +7,12 @@ from datetime import datetime
 from models.base_model import BaseModel
 
 
-
 class TestConsole(unittest.TestCase):
     """
     Console testing
     """
     console = HBNBCommand()
+
     def create(self):
         """ test create"""
         self.console = HBNBCommand()
