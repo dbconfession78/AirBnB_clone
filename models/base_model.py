@@ -20,15 +20,13 @@ class BaseModel:
         - if k/w args passed in, set class dict to args
         - if k/w args not passed in, set new uuid and current time
         """
-        if len(kwargs) > 0:  # revert to if kwargs after test
-            if "__class__" in kwargs:
-                del kwargs["__class__"]
-            kwargs["created_at"] = datetime.strptime(
-                kwargs["created_at"], dt_format)
-            kwargs["updated_at"] = datetime.strptime(
-                kwargs["updated_at"], dt_format)
-            self.__dict__ = kwargs
-#            if "created_at" in kwargs:  # revert to this after test
+        if kwargs:
+            if "created_at" in kwargs:
+                kwargs["created_at"] = datetime.strptime(
+                    kwargs["created_at"], dt_format)
+                kwargs["updated_at"] = datetime.strptime(
+                    kwargs["updated_at"], dt_format)
+                self.__dict__ = kwargs
         else:
             self.id = str(uuid.uuid4())  # obj to str
             self.created_at = datetime.now()  # obj
