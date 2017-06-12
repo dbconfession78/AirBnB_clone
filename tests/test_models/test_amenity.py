@@ -6,6 +6,7 @@ from models import amenity
 
 Amenity = amenity.Amenity
 
+
 class TestAmenity(unittest.TestCase):
     """Class: TestAmenity"""
     def setUp(self):
