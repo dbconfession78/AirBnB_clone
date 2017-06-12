@@ -1,14 +1,10 @@
 #!/usr/bin/python3
-"""
-Module: user
-"""
+"""Module: user"""
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """
-    User class
-    """
+    """eUser class"""
     email = ""
     password = ""
     first_name = ""
@@ -16,4 +12,7 @@ class User(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """initializes intance of User"""
-        super().__init__(*args, **kwargs)
+        if (kwargs.get("id") is not None):
+            self.__dict__ = kwargs
+        else:
+            super().__init__(self)
