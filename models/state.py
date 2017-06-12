@@ -12,7 +12,5 @@ class State(BaseModel):
     name = ""
 
     def __init__(self, *args, **kwargs):
-        """
-        inherits BaseModel initialization
-        """
+        """initializes instance of State"""
         super().__init__(*args, **kwargs)

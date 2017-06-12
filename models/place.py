@@ -22,4 +22,5 @@ class Place(BaseModel):
     amenity_ids = []
 
     def __init__(self, *args, **kwargs):
+        """ initializes instance of Place"""
         super().__init__(*args, **kwargs)
