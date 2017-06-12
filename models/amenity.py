@@ -2,6 +2,8 @@
 """
 Module: amenity
 """
+
+
 from models.base_model import BaseModel
 
 
