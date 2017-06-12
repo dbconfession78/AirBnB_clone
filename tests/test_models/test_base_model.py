@@ -9,7 +9,7 @@ from datetime import datetime
 BaseModel = base_model.BaseModel
 
 
-class TesDocumentation(unittest.TestCase):
+class TestDocumentation(unittest.TestCase):
     """Test for presence of file, class and method documentation"""
 
     @classmethod
