@@ -11,6 +11,7 @@ dt_format = "%Y-%m-%dT%H:%M:%S.%f"
 
 class BaseModel:
     """
+    BaseModel Class
     """
     def __init__(self, *args, **kwargs):
         """
