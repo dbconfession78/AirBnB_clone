@@ -61,7 +61,7 @@ class FileStorage:
         with open(FileStorage.__file_path, "w", encoding="utf-8") as _file:
             json.dump(store, _file)
 
-        def reload(self):
+    def reload(self):
         """
         deserializes the JSON file to __objects (only
         if the JSON file exists ; otherwise, do nothing)
