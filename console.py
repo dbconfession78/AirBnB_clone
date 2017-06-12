@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
             if name in class_models:
                 for k, v in store.items():
                     if type(v).__name__ == class_models[arg[0]].__name__:
-#                    if name in k:
+                        # if name in k:
                         print(v)
             else:
                 print("** class doesn't exist **")
