@@ -3,6 +3,7 @@
 Module: console
 """
 import cmd
+import sys
 from models import storage, class_models
 from models.base_model import BaseModel
 from models.user import User
@@ -17,6 +18,28 @@ class HBNBCommand(cmd.Cmd):
     """
     console class used to interface with HBNB
     """
+
+    def __init__(self, completekey='tab', stdin=None, stdout=None):
+        """Instantiate a line-oriented interpreter framework.
+
+        The optional argument 'completekey' is the readline name of a
+        completion key; it defaults to the Tab key. If completekey is
+        not None and the readline module is available, command completion
+        is done automatically. The optional arguments stdin and stdout
+        specify alternate input and output file objects; if not specified,
+        sys.stdin and sys.stdout are used.
+
+        """
+        if stdin is not None:
+            self.stdin = stdin
+        else:
+            self.stdin = sys.stdin
+        if stdout is not None:
+            self.stdout = stdout
+        else:
+            self.stdout = sys.stdout
+        self.cmdqueue = []
+        self.completekey = completekey
 
     def do_EOF(self, line):
         """(ctrl+d) command to halt process and exit console\n"""
@@ -56,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
         store = storage.all()
         args = [x.strip() for x in args.split()]
         if len(args) == 2:
-            if args[0] not in self.class_models:
+            if args[0] not in class_models:
                 print("** class doesn't exist **")
             else:
                 instance_key = args[0] + "." + args[1]
@@ -80,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
         store = storage.all()
         args = [x.strip() for x in args.split()]
         if len(args) == 2:
-            if args[0] not in self.class_models:
+            if args[0] not in class_models:
                 print("** class doesn't exist **")
             else:
                 instance_key = args[0] + "." + args[1]
@@ -100,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
         # If the class name doesn't exist, print ** class doesn't exist **
         store = storage.all()
         if name:
-            if name in self.class_models:
+            if name in class_models:
                 for k, v in store.items():
                     if name in k:
                         print(v)
@@ -144,7 +167,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 3:
             print("** attribute value missing **")
             return
-        if args[0] not in self.class_models:
+        if args[0] not in class_models:
                 print("** class doesn't exist **")
                 return
         for k, v in store.items():
