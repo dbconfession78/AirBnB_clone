@@ -15,18 +15,23 @@ class BaseModel:
     dt_format = "%Y-%m-%dT%H:%M:%S.%f"  # move back to global after test
 
     def __init__(self, *args, **kwargs):
-        if len(kwargs) > 0:
+        """
+        BaseModel initializer
+        - if k/w args passed in, set class dict to args
+        - if k/w args not passed in, set new uuid and current time
+        """
+        if len(kwargs) > 0:  # revert to if kwargs after test
             if "__class__" in kwargs:
                 del kwargs["__class__"]
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     self.dt_format)
-            if "updated_at" in kwargs:
-                kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                         self.dt_format)
-            self.__dict__ = kwargs
+            kwargs["created_at"] = datetime.strptime(
+                kwargs["created_at"], dt_format)
+            kwargs["updated_at"] = datetime.strptime(
+                kwargs["updated_at"], dt_format)
+#            if "created_at" in kwargs:  # revert to this after test
+                self.__dict__ = kwargs
         else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
+            self.id = str(uuid.uuid4())  # obj to str
+            self.created_at = datetime.now()  # obj
             models.storage.new(self)
 
     def save(self):
