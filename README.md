@@ -23,7 +23,7 @@ The following commands have been implemented:
 | `create` |`create` `<class name>`                    |creates an object |
 |`show`    |`show` `<class name>`                      |prints the string representation of an object|
 | `destroy`|`destroy` `<class name>` `<id>`      |deletes an object|
-|`all`     |`all `<class name`>              |shows all representations of objects|
-|`update`  |`update` <class name>` `<id>` `<attr key>` `<attr val>`||
+|`all`     |`all `<class name>`              |shows all representations of objects|
+|`update`  |`update` `<class name>` `<id>` `<attr key>` `<attr val>`||
 
 ####     examples
