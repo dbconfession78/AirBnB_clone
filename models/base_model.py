@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module; base_model
+Module: base_model
 """
 import uuid
 from datetime import datetime
