@@ -18,12 +18,12 @@ The following commands have been implemented:
 ####     how to use it
 | Command  | Syntax                        |Definition                                    |  
 |:-------: | ------------------------------|----------------|
-| `help`   |`help [command]`               |to get help about other commands.             |  
+| `help`   |`help `<command>`               |to get help about other commands.             |  
 | `quit`   |`quit`                         |or `EOF` (end of file) to terminate session.   | 
-| `create` |`create ??`                    |creates an object |
-|`show`    |`show ??`                      |prints the string representation of an object|
-| `destroy`|`delete` `ClassName` `id`      |deletes an object|
-|`all`     |`all [ClassName]`              |shows all representations of objects|
-|`update`  |`update` `ClassName` `id` `attr key`` ``attr val``||
+| `create` |`create` `<class name>`                    |creates an object |
+|`show`    |`show` `<class name>`                      |prints the string representation of an object|
+| `destroy`|`destroy` `<class name>` `<id>`      |deletes an object|
+|`all`     |`all `<class name`>              |shows all representations of objects|
+|`update`  |`update` <class name>` `<id>` `<attr key>` `<attr val>`||
 
 ####     examples
