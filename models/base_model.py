@@ -20,7 +20,7 @@ class BaseModel:
         - if k/w args passed in, set class dict to args
         - if k/w args not passed in, set new uuid and current time
         """
-        if kwargs > 0:   # back to if kwargs after test
+        if kwargs:
             if "created_at" in kwargs:
                 self.__dict__ = kwargs
         else:
