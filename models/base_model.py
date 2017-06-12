@@ -12,24 +12,16 @@ import models
 class BaseModel:
     """BaseModel Class"""
 
-    dt_format = "%Y-%m-%dT%H:%M:%S.%f"  # move back to global after test
+    dt_format = "%Y-%m-%dT%H:%M:%S.%f"
 
     def __init__(self, *args, **kwargs):
-        """
-        BaseModel initializer
-        - if k/w args passed in, set class dict to args
-        - if k/w args not passed in, set new uuid and current time
-        """
+        """initializes new instance of BaseModel"""
         if kwargs:
-            if "created_at" in kwargs:
-                kwargs["created_at"] = datetime.strptime(
-                    kwargs["created_at"], dt_format)
-                kwargs["updated_at"] = datetime.strptime(
-                    kwargs["updated_at"], dt_format)
-                self.__dict__ = kwargs
+            kwargs = self.sanitize_deserialization(kwargs)
+            self.__dict__ = kwargs
         else:
-            self.id = str(uuid.uuid4())  # obj to str
-            self.created_at = datetime.now()  # obj
+            self.id = str(uuid.uuid4())  # obj -> str
+            self.created_at = datetime.now()  # as obj
             models.storage.new(self)
 
     def save(self):
@@ -55,10 +47,22 @@ class BaseModel:
                 json[k] = v
         return json
 
+    def sanitize_deserialization(self, kwargs):
+        """deserializes datetime attributes if necessary"""
+        if not isinstance(kwargs["created_at"], datetime):
+                kwargs["created_at"] = datetime.strptime(
+                    kwargs["created_at"], self.dt_format)
+
+        if "updated_at" in kwargs:
+            if not isinstance(kwargs["updated_at"], datetime):
+                kwargs["updated_at"] = datetime.strptime(
+                    kwargs["updated_at"], self.dt_format)
+        return kwargs
+
     def __str__(self):
         """
         returns class, id and class attributes format for
         printing as string
         """
-        return "[{}] ({}) {}".format(self.__class__.__name__, str(self.id),
+        return "[{}] ({}) {}".format(type(self).__name__, self.id,
                                      self.__dict__)
