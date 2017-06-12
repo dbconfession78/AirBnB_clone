@@ -3,7 +3,7 @@
 Module: console
 """
 import cmd
-from models import storage
+from models import storage, class_models
 from models.base_model import BaseModel
 from models.user import User
 from models.amenity import Amenity
@@ -17,16 +17,6 @@ class HBNBCommand(cmd.Cmd):
     """
     console class used to interface with HBNB
     """
-
-    class_models = {
-        "BaseModel": BaseModel,
-        "User": User,
-        "Amenity": Amenity,
-        "City": City,
-        "Place": Place,
-        "Review": Review,
-        "State": State
-    }
 
     def do_EOF(self, line):
         """(ctrl+d) command to halt process and exit console\n"""
@@ -46,8 +36,8 @@ class HBNBCommand(cmd.Cmd):
         # Ex: $ create BaseModel
         # If the class name doesn't exist, print ** class doesn't exist **
         # If the class name is missing, print ** class name missing **
-        if class_model in self.class_models:
-            new_object = self.class_models[class_model]()
+        if class_model in class_models:
+            new_object = class_models[class_model]()
             new_object.save()
             print(new_object.id)
         elif len(class_model) == 0:
