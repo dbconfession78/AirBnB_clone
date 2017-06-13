@@ -1,32 +1,43 @@
 #!/usr/bin/python3
 """
-Module: Unit Testing for City Class
+Module: Unit Testing for City class
 """
 import unittest
-from models import city
-from datetime import datetime
-
-City = city.City
+from models.city import City
 
 
-class TestDocumentation(unittest.TestCase):
-    """Test for presence of file, class and method documentation"""
+class TestCity(unittest.TestCase):
+    """TestCity class"""
+    def setUp(self):
+        """ instantiate Amenity"""
+        self.city = City()
 
-    @classmethod
-    def setUpClass(cls):
-        """ Documentation Testing Set-up"""
+    def testattr(self):
+        """ testing Amenity attributes"""
+        self.assertTrue(hasattr(self.city, "created_at"))
+        self.assertFalse(hasattr(self.city, "updated_at"))
+        self.assertTrue(hasattr(self.city, "id"))
+        self.assertTrue(hasattr(self.city, "name"))
+        self.assertEqual(self.city.__class__.__name__, "City")
+        self.assertEqual(self.city.name, "")
 
-        print("\n")
-        print("=======================================")
-        print("                  City                 ")
-        print("           Documentation Tests         ")
-        print("=======================================")
-        print("")
+    def test_method(self):
+        """testing Amenity methods"""
+        self.city.save()
+        self.assertTrue(hasattr(self.city, "updated_at"))
+
+    def test_string_format(self):
+        """testing string formatting"""
+        expected = "[{}] ({}) {}".format(
+            self.city.__class__.__name__, str(
+                self.city.id), self.city.__dict__)
+        got = str(self.city)
+        self.assertEqual(expected, got)
 
     def test_module_doc(self):
         """ module documentation """
         expected = True
-        got = len(city.__doc__) > 0
+        got = len(self.city.__doc__) > 0
         self.assertEqual(expected, got)
 
     def test_class_doc(self):
@@ -41,48 +52,14 @@ class TestDocumentation(unittest.TestCase):
         got = len(City.__init__.__doc__) > 0
         self. assertEqual(expected, got)
 
-
-class TestInstantiation(unittest.TestCase):
-    """ test instantiation """
-
-    @classmethod
-    def setUpClass(cls):
-        """ Method Testing Set-up"""
-
-        print("\n")
-        print("=======================================")
-        print("                  City                 ")
-        print("              Method Tests             ")
-        print("=======================================")
-        print("")
-
-    def test_instantiation(self):
-        """ Instantiation"""
-        cty = Cityl()
-        self.assertIsInstance(cty, City)
-
-    def test_string_format(self):
-        """String formatting"""
-        cty = City()
-        expected = "[{}] ({}) {}".format(cty.__class__.__name__,
-                                         str(cty.id), cty.__dict__)
-        got = str(cty)
+    def test_str_doc(self):
+        """__str__() documentation"""
+        expected = True
+        got = len(City.__str__.__doc__) > 0
         self.assertEqual(expected, got)
 
-    def test_name_attr(self):
-        """name attribute"""
-        cty = City()
-        expected = "XXX"
-        got = "XXX"
-
+    def test_to_json(self):
+        """to_json() documentation"""
+        expected = True
+        got = len(City.to_json.__doc__) > 0
         self.assertEqual(expected, got)
-
-    def test_number_attr(self):
-        """number attribute"""
-        cty = City()
-        expected = "XXX"
-        got = "XXX"
-        self.assertEqual(expected, got)
-
-if __name__ == "__main__":
-    unittest.main
