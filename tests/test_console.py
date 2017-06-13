@@ -5,10 +5,9 @@ import unittest
 from console import HBNBCommand
 import sys
 
+
 class TestConsole(unittest.TestCase):
-    """
-    Console testing
-    """
+    """TestConsole class"""
     def setUp(self):
         """setup mock stdin and stdout"""
         self.stdout = create_autospec(sys.stdout)
