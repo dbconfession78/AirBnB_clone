@@ -110,10 +110,10 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         if len(args) == 2:
-            print("** attribute name missing")
+            print("** attribute name missing **")
             return
         if len(args) == 3:
-            print("** attribute value missing **")
+            print("** value missing **")
             return
         if args[0] not in class_models:
                 print("** class doesn't exist **")
