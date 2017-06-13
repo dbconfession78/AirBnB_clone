@@ -83,11 +83,15 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, name=""):
         """Prints string repr. of all instances based on class name\n"""
         store = storage.all()
+        count = 0
         if name:
             if name in class_models:
                 for k, v in store.items():
                     if name in k:
                         print(v)
+                        count += 1
+                if count == 0:
+                    print("[]")
             else:
                 print("** class doesn't exist **")
         else:
