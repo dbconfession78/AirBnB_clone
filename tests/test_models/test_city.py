@@ -15,11 +15,16 @@ class TestCity(unittest.TestCase):
     def testattr(self):
         """ testing Amenity attributes"""
         self.assertTrue(hasattr(self.city, "created_at"))
-        self.assertFalse(hasattr(self.city, "updated_at"))
         self.assertTrue(hasattr(self.city, "id"))
+        self.assertFalse(hasattr(self.city, "updated_at"))
+        self.assertFalse(hasattr(self.city, "random_attr"))
         self.assertTrue(hasattr(self.city, "name"))
         self.assertEqual(self.city.__class__.__name__, "City")
         self.assertEqual(self.city.name, "")
+        self.assertEqual(self.city.state_id, "")
+        self.city.name = "San Francisco"
+        self.state_id = "343r387"
+        self.assertEqual(self.city.name, "San Francisco")
 
     def test_method(self):
         """testing Amenity methods"""
