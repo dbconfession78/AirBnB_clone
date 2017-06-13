@@ -33,9 +33,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, class_model):
         """creates a new instance of BaseModel and saves to file\n"""
-        # Ex: $ create BaseModel
-        # If the class name doesn't exist, print ** class doesn't exist **
-        # If the class name is missing, print ** class name missing **
         if class_model in class_models:
             new_object = class_models[class_model]()
             new_object.save()
@@ -47,12 +44,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         """Prints instance in str format based on id and class name\n"""
-        # Ex: $ show BaseModel 1234-1234-1234.
-        # If the instance doesn't exist for the id,
-        #     print ** no instance found **
-        # If the id is missing, print ** instance id missing **
-        # If the class name doesn't exist, print ** class doesn't exist **
-        # If the class name is missing, print ** class name missing **
         store = storage.all()
         args = [x.strip() for x in args.split()]
         if len(args) == 2:
@@ -72,11 +63,6 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, args):
         """Deletes instance based on class name+id (changes saved to file.json)
 """
-        # Ex: $ destroy BaseModel 1234-1234-1234.
-        # If instance doesn't exist for the id, print ** no instance found **
-        # If the id is missing, print ** instance id missing **
-        # If the class name doesn't exist, print ** class doesn't exist **
-        # If the class name is missing, print ** class name missing **
         store = storage.all()
         args = [x.strip() for x in args.split()]
         if len(args) == 2:
@@ -96,8 +82,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, name=""):
         """Prints string repr. of all instances based on class name\n"""
-        # Ex: $ all BaseModel or $ all.
-        # If the class name doesn't exist, print ** class doesn't exist **
         store = storage.all()
         if name:
             if name in class_models:
@@ -113,23 +97,6 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, args):
         """- Updates instance based on class name+id by adding/updating attr
 - changes saved into file.json)\n"""
-        # Ex: $ update BaseModel 1234-1234-1234 email
-        #     "aibnb@holbertonschool.com".
-        # Usage: update <class name> <id> <attribute name> <attribute value>
-        # Only one attribute can be updated at the time
-        # If the instance doesn't exist for the id,
-        #     print ** no instance found **
-        # If the id is missing, print ** instance id missing **
-        # If the class name doesn't exist, print ** class doesn't exist **
-        # If the class name is missing, print ** class name missing **
-        # If the attribute name is missing, print ** attribute name missing **
-        # If the value for the attribute name doesn't exist, print
-        #     ** value missing **
-        # All other arguments should not be used
-        # (Ex: $ update BaseModel 1234-1234-1234
-        #    email "aibnb@holbertonschool.com" first_name
-        #    "Betty" = $ update BaseModel 1234-1234-1234 email
-        #    "aibnb@holbertonschool.com")
         args = args.split()
         store = storage.all()
         if len(args) == 0:
@@ -148,6 +115,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
         for k, v in store.items():
+            if args[3][0] == "\"" and args[3][-1] == "\"":
+                args[3] = args[3][1:-1]
             instance_key = args[0] + "." + args[1]
             if k == instance_key:
                 setattr(v, args[2], args[3])
