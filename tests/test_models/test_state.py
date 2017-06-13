@@ -6,14 +6,14 @@ import unittest
 from models.state import State
 
 
-class TestCity(unittest.TestCase):
+class TestState(unittest.TestCase):
     """TestState class"""
     def setUp(self):
-        """ instantiate Amenity"""
+        """ instantiate class"""
         self.cls = State()
 
     def testattr(self):
-        """ testing Amenity attributes"""
+        """ testing attributes"""
         self.assertTrue(hasattr(self.cls, "created_at"))
         self.assertTrue(hasattr(self.cls, "id"))
         self.assertFalse(hasattr(self.cls, "updated_at"))

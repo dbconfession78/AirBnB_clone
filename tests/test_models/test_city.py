@@ -9,11 +9,11 @@ from models.city import City
 class TestCity(unittest.TestCase):
     """TestCity class"""
     def setUp(self):
-        """ instantiate Amenity"""
+        """ instantiate class"""
         self.city = City()
 
     def testattr(self):
-        """ testing Amenity attributes"""
+        """ testing attributes"""
         self.assertTrue(hasattr(self.city, "created_at"))
         self.assertTrue(hasattr(self.city, "id"))
         self.assertFalse(hasattr(self.city, "updated_at"))

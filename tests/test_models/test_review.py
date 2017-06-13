@@ -6,7 +6,7 @@ import unittest
 from models.review import Review
 
 
-class TestPlace(unittest.TestCase):
+class TestReview(unittest.TestCase):
     """TestReview class"""
     def setUp(self):
         """ instantiate class"""
