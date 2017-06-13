@@ -3,7 +3,6 @@
 Module: base_model
 """
 
-
 import uuid
 from datetime import datetime
 import models
@@ -32,14 +31,9 @@ class BaseModel:
         models.storage.save()
 
     def to_json(self):
-        """
-        - returns a dictionary containing all class instance keys/values
-          + class name in key `__class__`.
-        - This method will be the first piece of
-          the serialization/deserialization process.
-        """
+        """returns objects converted to JSON format"""
         json = {}
-        json["__class__"] = self.__class__.__name__
+        json["__class__"] = type(self).__name__
         for k, v in self.__dict__.items():
             if isinstance(v, datetime):
                 json[k] = v.isoformat()

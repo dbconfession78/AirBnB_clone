@@ -7,10 +7,10 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """State class handles all application states"""
+    """State class"""
 
-    name = ''
+    name = ""
 
     def __init__(self, *args, **kwargs):
-        """instantiates a new state"""
+        """instantiates new instance of State"""
         super().__init__(*args, **kwargs)

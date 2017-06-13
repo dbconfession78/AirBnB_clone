@@ -2,13 +2,12 @@
 """
 Module: place
 """
+
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """
-    Place class
-    """
+    """Place class"""
     city_id = ""
     user_id = ""
     name = ""
@@ -22,5 +21,5 @@ class Place(BaseModel):
     amenity_ids = []
 
     def __init__(self, *args, **kwargs):
-        """ initializes instance of Place"""
+        """ initializes new instance of Place"""
         super().__init__(*args, **kwargs)

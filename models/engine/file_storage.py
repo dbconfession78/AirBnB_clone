@@ -26,15 +26,14 @@ class FileStorage:
     __file_path = "./file.json"
     __objects = {}
 
-    def __init__(self):
-        self.__class_models = {
-            "BaseModel": BaseModel,
-            "User": User,
-            "Amenity": Amenity,
-            "City": City,
-            "Place": Place,
-            "Review": Review,
-            "State": State
+    class_models = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "Amenity": Amenity,
+        "City": City,
+        "Place": Place,
+        "Review": Review,
+        "State": State
         }
 
     def all(self):
@@ -48,7 +47,7 @@ class FileStorage:
         adds new object instance to objects
         """
         if obj is not None:
-            key = obj.__class__.__name__ + "." + obj.id
+            key = type(obj).__name__ + "." + obj.id
             FileStorage.__objects[key] = obj
 
     def save(self):
@@ -70,7 +69,7 @@ class FileStorage:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 loaded = json.load(f)
             for _id, v in loaded.items():
-
+                cls = loaded[_id].pop("__class__", None)
                 try:
                     loaded[_id]["created_at"] = datetime.strptime(
                         loaded[_id]["created_at"], dt_format)
@@ -78,5 +77,4 @@ class FileStorage:
                         loaded[_id]["updated_at"], dt_format)
                 except:
                     pass
-                cls = loaded[_id].pop("__class__", None)
-                FileStorage.__objects[_id] = self.__class_models[cls](**v)
+                FileStorage.__objects[_id] = FileStorage.class_models[cls](**v)
