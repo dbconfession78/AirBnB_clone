@@ -119,7 +119,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
         for k, v in store.items():
-            if args[3][0] == "\"" and args[3][-1] == "\"":
+            if args[3].startswith('"') and args[3].endswith('"'):
                 args[3] = args[3][1:-1]
             instance_key = args[0] + "." + args[1]
             if k == instance_key:
