@@ -1,32 +1,47 @@
 #!/usr/bin/python3
 """
-Module: Unit Testing for State Class
+Module: Unit Testing for State class
 """
 import unittest
-from models import state
-from datetime import datetime
-
-State = state.State
+from models.state import State
 
 
-class TestDocumentation(unittest.TestCase):
-    """Test for presence of file, class and method documentation"""
+class TestCity(unittest.TestCase):
+    """TestState class"""
+    def setUp(self):
+        """ instantiate Amenity"""
+        self.cls = State()
 
-    @classmethod
-    def setUpClass(cls):
-        """ Documentation Testing Set-up"""
+    def testattr(self):
+        """ testing Amenity attributes"""
+        self.assertTrue(hasattr(self.cls, "created_at"))
+        self.assertTrue(hasattr(self.cls, "id"))
+        self.assertFalse(hasattr(self.cls, "updated_at"))
+        self.assertFalse(hasattr(self.cls, "random_attr"))
+        self.assertTrue(hasattr(self.cls, "name"))
+        self.assertEqual(self.cls.__class__.__name__, "State")
+        self.assertEqual(self.cls.name, "")
 
-        print("\n")
-        print("=======================================")
-        print("                 State                 ")
-        print("           Documentation Tests         ")
-        print("=======================================")
-        print("")
+        self.cls.name = "New Jersey"
+        self.assertEqual(self.cls.name, "New Jersey")
+
+    def test_method(self):
+        """testing Amenity methods"""
+        self.cls.save()
+        self.assertTrue(hasattr(self.cls, "updated_at"))
+
+    def test_string_format(self):
+        """testing string formatting"""
+        expected = "[{}] ({}) {}".format(
+            self.cls.__class__.__name__, str(
+                self.cls.id), self.cls.__dict__)
+        got = str(self.cls)
+        self.assertEqual(expected, got)
 
     def test_module_doc(self):
         """ module documentation """
         expected = True
-        got = len(state.__doc__) > 0
+        got = len(self.cls.__doc__) > 0
         self.assertEqual(expected, got)
 
     def test_class_doc(self):
@@ -41,48 +56,14 @@ class TestDocumentation(unittest.TestCase):
         got = len(State.__init__.__doc__) > 0
         self. assertEqual(expected, got)
 
-
-class MethodTests(unittest.TestCase):
-    """ test class methods and instantiation """
-
-    @classmethod
-    def setUpClass(cls):
-        """ Method Testing Set-up"""
-
-        print("\n")
-        print("=======================================")
-        print("                 State                 ")
-        print("              Method Tests             ")
-        print("=======================================")
-        print("")
-
-    def test_instantiation(self):
-        """ Instantiation"""
-        cls = State()
-        self.assertIsInstance(cls, State)
-
-    def test_string_format(self):
-        """String formatting"""
-        cls = State()
-        expected = "[{}] ({}) {}".format(cls.__class__.__name__,
-                                         str(cls.id), cls.__dict__)
-        got = str(cls)
+    def test_str_doc(self):
+        """__str__() documentation"""
+        expected = True
+        got = len(State.__str__.__doc__) > 0
         self.assertEqual(expected, got)
 
-    def test_name_attr(self):
-        """name attribute"""
-        cls = State()
-        expected = "XXX"
-        got = "XXX"
-
+    def test_to_json(self):
+        """to_json() documentation"""
+        expected = True
+        got = len(State.to_json.__doc__) > 0
         self.assertEqual(expected, got)
-
-    def test_number_attr(self):
-        """number attribute"""
-        cls = State()
-        expected = "XXX"
-        got = "XXX"
-        self.assertEqual(expected, got)
-
-if __name__ == "__main__":
-    unittest.main
