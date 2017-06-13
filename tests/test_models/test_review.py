@@ -1,32 +1,51 @@
 #!/usr/bin/python3
 """
-Module: Unit Testing for Review Class
+Module: Unit Testing for Review class
 """
 import unittest
-from models import review
-from datetime import datetime
-
-Review = review.Review
+from models.review import Review
 
 
-class TestDocumentation(unittest.TestCase):
-    """Test for presence of file, class and method documentation"""
+class TestPlace(unittest.TestCase):
+    """TestReview class"""
+    def setUp(self):
+        """ instantiate class"""
+        self.cls = Review()
 
-    @classmethod
-    def setUpClass(cls):
-        """ Documentation Testing Set-up"""
+    def testattr(self):
+        """ testing  attributes"""
+        self.assertTrue(hasattr(self.cls, "created_at"))
+        self.assertTrue(hasattr(self.cls, "id"))
+        self.assertFalse(hasattr(self.cls, "updated_at"))
+        self.assertFalse(hasattr(self.cls, "random_attr"))
 
-        print("\n")
-        print("=======================================")
-        print("                 Review                ")
-        print("           Documentation Tests         ")
-        print("=======================================")
-        print("")
+        self.assertTrue(hasattr(self.cls, "place_id"))
+        self.assertTrue(hasattr(self.cls, "user_id"))
+        self.assertTrue(hasattr(self.cls, "text"))
+
+        self.assertEqual(self.cls.__class__.__name__, "Review")
+        self.assertEqual(self.cls.text, "")
+
+        self.cls.text = "my review"
+        self.assertEqual(self.cls.text, "my review")
+
+    def test_method(self):
+        """testing Amenity methods"""
+        self.cls.save()
+        self.assertTrue(hasattr(self.cls, "updated_at"))
+
+    def test_string_format(self):
+        """testing string formatting"""
+        expected = "[{}] ({}) {}".format(
+            self.cls.__class__.__name__, str(
+                self.cls.id), self.cls.__dict__)
+        got = str(self.cls)
+        self.assertEqual(expected, got)
 
     def test_module_doc(self):
         """ module documentation """
         expected = True
-        got = len(review.__doc__) > 0
+        got = len(self.cls.__doc__) > 0
         self.assertEqual(expected, got)
 
     def test_class_doc(self):
@@ -41,48 +60,14 @@ class TestDocumentation(unittest.TestCase):
         got = len(Review.__init__.__doc__) > 0
         self. assertEqual(expected, got)
 
-
-class MethodTests(unittest.TestCase):
-    """ test class methods and instantiation """
-
-    @classmethod
-    def setUpClass(cls):
-        """ Method Testing Set-up"""
-
-        print("\n")
-        print("=======================================")
-        print("                 Review                ")
-        print("              Method Tests             ")
-        print("=======================================")
-        print("")
-
-    def test_instantiation(self):
-        """ Instantiation"""
-        cls = Review()
-        self.assertIsInstance(cls, Review)
-
-    def test_string_format(self):
-        """String formatting"""
-        cls = Review()
-        expected = "[{}] ({}) {}".format(cls.__class__.__name__,
-                                         str(cls.id), cls.__dict__)
-        got = str(cls)
+    def test_str_doc(self):
+        """__str__() documentation"""
+        expected = True
+        got = len(Review.__str__.__doc__) > 0
         self.assertEqual(expected, got)
 
-    def test_name_attr(self):
-        """name attribute"""
-        cls = Review()
-        expected = "XXX"
-        got = "XXX"
-
+    def test_to_json(self):
+        """to_json() documentation"""
+        expected = True
+        got = len(Review.to_json.__doc__) > 0
         self.assertEqual(expected, got)
-
-    def test_number_attr(self):
-        """number attribute"""
-        cls = Review()
-        expected = "XXX"
-        got = "XXX"
-        self.assertEqual(expected, got)
-
-if __name__ == "__main__":
-    unittest.main
