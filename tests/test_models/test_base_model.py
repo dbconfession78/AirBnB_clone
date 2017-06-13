@@ -3,30 +3,42 @@
 Module: Unit Testing for BaseModel Class
 """
 import unittest
-from models import base_model
-from datetime import datetime
-
-BaseModel = base_model.BaseModel
+from models.base_model import BaseModel
 
 
-class TestDocumentation(unittest.TestCase):
-    """Test for presence of file, class and method documentation"""
+class TestBaseModel(unittest.TestCase):
+    """TestBaseModel class"""
 
-    @classmethod
-    def setUpClass(cls):
-        """ Base Model Documentation Testing Set-up"""
+    def setUp(self):
+        """ instantiate BaseModel"""
+        self.cls = BaseModel()
 
-        print("\n")
-        print("=======================================")
-        print("               BaseModel               ")
-        print("           Documentation Tests         ")
-        print("=======================================")
-        print("")
+    def testattr(self):
+        """ testing Amenity attributes"""
+        self.assertTrue(hasattr(self.cls, "created_at"))
+        self.assertFalse(hasattr(self.cls, "updated_at"))
+        self.assertTrue(hasattr(self.cls, "id"))
+
+        self.assertFalse(hasattr(self.cls, "random_attr"))
+        self.assertFalse(hasattr(self.cls, "name"))
+
+        self.cls.name = "Mike"
+        self.cls.fave_color = "blue"
+        self.assertTrue(hasattr(self.cls, "name"))
+        self.assertEqual(self.cls.fave_color, "blue")
+        delattr(self.cls, "name")
+        self.assertFalse(hasattr(self.cls, "name"))
+        self.assertEqual(self.cls.__class__.__name__, "BaseModel")
+
+    def test_method(self):
+        """testing  method"""
+        self.cls.save()
+        self.assertTrue(hasattr(self.cls, "updated_at"))
 
     def test_module_doc(self):
-        """ tests for presence base_model documentation """
+        """ module documentation """
         expected = True
-        got = len(base_model.__doc__) > 0
+        got = len(self.cls.__doc__) > 0
         self.assertEqual(expected, got)
 
     def test_class_doc(self):
@@ -59,74 +71,6 @@ class TestDocumentation(unittest.TestCase):
         got = len(BaseModel.__str__.__doc__) > 0
         self.assertEqual(expected, got)
 
-
-class MethodTests(unittest.TestCase):
-    """ test BaseModel instantiation """
-
-    @classmethod
-    def setUpClass(cls):
-        """ BaseModel Instantiation Testing Set-up"""
-
-        print("\n")
-        print("=======================================")
-        print("               BaseModel               ")
-        print("              Method Tests             ")
-        print("=======================================")
-        print("")
-
-    def test_instantiation(self):
-        """BaseModel Instantiation"""
-        bm = BaseModel()
-        self.assertIsInstance(bm, BaseModel)
-
-    def test_string_format(self):
-        """String formatting"""
-        bm = BaseModel()
-        expected = "[{}] ({}) {}".format(bm.__class__.__name__,
-                                         str(bm.id), bm.__dict__)
-        got = str(bm)
-        self.assertEqual(expected, got)
-
-    def test_save(self):
-        """call save()"""
-        bm = BaseModel()
-        bm.save()
-        expected = True
-        got = bm.created_at != bm.updated_at
-        self.assertEqual(expected, got)
-
-    def test_to_json(self):
-        """call to_json"""
-        bm = BaseModel()
-        json = str(bm.to_json())
-        created_at = "'created_at': '" + datetime.strftime(
-            bm.__dict__["created_at"], "%Y-%m-%dT%H:%M:%S.%f") + "'"
-        header = "{'__class__': 'BaseModel', 'id': '"
-        _id = bm.__dict__["id"]
-        string = "{'__class__': 'BaseModel', 'id': '" + bm.__dict__[
-            "id"] + "', 'created_at': '" + created_at + "'}"
-        expected = True
-        if created_at in string and header in string and _id in string:
-            got = True
-        else:
-            got = False
-
-        self.assertEqual(expected, got)
-
-    def test_name_attr(self):
-        """name attribute"""
-        bm = BaseModel()
-        expected = "XXX"
-        got = "XXX"
-
-        self.assertEqual(expected, got)
-
-    def test_number_attr(self):
-        """number attribute"""
-        bm = BaseModel()
-        expected = "XXX"
-        got = "XXX"
-        self.assertEqual(expected, got)
 
 if __name__ == "__main__":
     unittest.main
