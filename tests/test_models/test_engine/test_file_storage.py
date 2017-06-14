@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 import unittest
 from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
 from models import storage
+import os
+import json
 """Module: test_file_storage """
 
 
@@ -10,6 +13,7 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """instantiate class"""
         self.cls = FileStorage()
+        self.bm = BaseModel()
 
     def test_attrs(self):
         """testing the attributes of FileStorage"""
@@ -20,6 +24,22 @@ class TestFileStorage(unittest.TestCase):
     def test_instqntiation(self):
         """ instatiate class """
         self.assertIsInstance(storage, FileStorage)
+
+    def test_json_file(self):
+        """file.json"""
+        expected = True
+        got = False
+        os.remove("./file.json")
+        self.bm.save()
+        _id = self.bm.id
+        with open ("./file.json", mode="r", encoding="utf-8") as _file:
+            load = json.load(_file)
+        for key in load.keys():
+            if _id in key:
+                got = True
+        self.assertTrue(expected, got)
+
+
 
     def test_module_doc(self):
         """ module documentation """
