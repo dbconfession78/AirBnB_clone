@@ -20,7 +20,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertFalse(hasattr(self.cls, "random_attr"))
         self.assertTrue(hasattr(self.cls, "class_models"))
 
-
     def test_instqntiation(self):
         """ instatiate class """
         self.assertIsInstance(storage, FileStorage)
@@ -32,14 +31,12 @@ class TestFileStorage(unittest.TestCase):
         os.remove("./file.json")
         self.bm.save()
         _id = self.bm.id
-        with open ("./file.json", mode="r", encoding="utf-8") as _file:
+        with open("./file.json", mode="r", encoding="utf-8") as _file:
             load = json.load(_file)
         for key in load.keys():
             if _id in key:
                 got = True
         self.assertTrue(expected, got)
-
-
 
     def test_module_doc(self):
         """ module documentation """
