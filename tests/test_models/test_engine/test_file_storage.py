@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 from models import storage
 import os
 import json
-from models.amenity  import Amenity
+from models.amenity import Amenity
 """Module: test_file_storage """
 
 
@@ -39,7 +39,6 @@ class TestFileStorage(unittest.TestCase):
             if _id in key:
                 got = True
         self.assertTrue(expected, got)
-
 
     def test_to_json(self):
         """to_json() method"""
@@ -113,9 +112,6 @@ class TestFileStorage(unittest.TestCase):
             if _id in key:
                 actual = True
         self.assertTrue(expected, got)
-
-
-    print("===============================================")
 
     def test_module_doc(self):
         """ module documentation """
