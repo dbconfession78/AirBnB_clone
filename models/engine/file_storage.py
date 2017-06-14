@@ -1,56 +1,80 @@
 #!/usr/bin/python3
 """
-Handles I/O, writing and reading, of JSON for storage of all class instances
+Module: file_storage
 """
 import json
-from models import base_model, amenity, city, place, review, state, user
+import sys
+import os.path
 from datetime import datetime
+from models.base_model import BaseModel
+from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 
-strptime = datetime.strptime
-to_json = base_model.BaseModel.to_json
+dt_format = "%Y-%m-%dT%H:%M:%S.%f"
 
 
 class FileStorage:
-    """handles long term storage of all class instances"""
-    CNC = {
-        'BaseModel': base_model.BaseModel,
-        'Amenity': amenity.Amenity,
-        'City': city.City,
-        'Place': place.Place,
-        'Review': review.Review,
-        'State': state.State,
-        'User': user.User
-    }
-    __file_path = 'file.json'
+    """
+    handles file storage operations
+    - save: converts obj dict to JSON and writes to file
+    - load: reads file and converts JSON to object dict
+    """
+    __file_path = "./file.json"
     __objects = {}
 
+    class_models = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "Amenity": Amenity,
+        "City": City,
+        "Place": Place,
+        "Review": Review,
+        "State": State
+        }
+
     def all(self):
-        """returns private attribute: __objects"""
+        """
+        returns all object instances
+        """
         return FileStorage.__objects
 
     def new(self, obj):
-        """sets / updates in __objects the obj with key <obj class name>.id"""
-        bm_id = "{}.{}".format(type(obj).__name__, obj.id)
-        FileStorage.__objects[bm_id] = obj
+        """
+        adds new object instance to objects
+        """
+        if obj is not None:
+            key = type(obj).__name__ + "." + obj.id
+            FileStorage.__objects[key] = obj
 
     def save(self):
-        """serializes __objects to the JSON file (path: __file_path)"""
-        fname = FileStorage.__file_path
-        d = {}
-        for bm_id, bm_obj in FileStorage.__objects.items():
-            d[bm_id] = bm_obj.to_json()
-        with open(fname, mode='w', encoding='utf-8') as f_io:
-            json.dump(d, f_io)
+        """
+        serializes __objects to the JSON file (path: __file_path)
+        """
+        store = {}
+        for k, v in FileStorage.__objects.items():
+            store[k] = v.to_json()
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as _file:
+            json.dump(store, _file)
 
     def reload(self):
-        """if file exists, deserializes JSON file to __objects, else nothing"""
-        fname = FileStorage.__file_path
-        FileStorage.__objects = {}
-        try:
-            with open(fname, mode='r', encoding='utf-8') as f_io:
-                new_objs = json.load(f_io)
-        except:
-            return
-        for o_id, d in new_objs.items():
-            k_cls = d['__class__']
-            FileStorage.__objects[o_id] = FileStorage.CNC[k_cls](**d)
+        """
+        deserializes the JSON file to __objects (only
+        if the JSON file exists ; otherwise, do nothing)
+        """
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+                loaded = json.load(f)
+            for _id, v in loaded.items():
+                cls = loaded[_id].pop("__class__", None)
+                try:
+                    loaded[_id]["created_at"] = datetime.strptime(
+                        loaded[_id]["created_at"], dt_format)
+                    loaded[_id]["updated_at"] = datetime.strptime(
+                        loaded[_id]["updated_at"], dt_format)
+                except:
+                    pass
+                FileStorage.__objects[_id] = FileStorage.class_models[cls](**v)
