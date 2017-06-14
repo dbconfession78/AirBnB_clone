@@ -65,6 +65,22 @@ class TestFileStorage(unittest.TestCase):
                 got = True
         self.assertTrue(expected, got)
 
+    def test_save_and_reload(self):
+        """save and reload object"""
+        expected = True
+        got = False
+        os.remove("./file.json")
+        self.bm.save()
+        _id = self.bm.id
+        fs = FileStorage()
+        fs.reload()
+        all_dicts = fs.all()
+        for key, val in all_dicts.items():
+            if _id in key:
+                if type(val).__name__ == "BaseModel":
+                    got = True
+        self.assertTrue(expected, got)
+
 
     def test_module_doc(self):
         """ module documentation """
