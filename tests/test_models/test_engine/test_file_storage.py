@@ -5,6 +5,7 @@ from models.base_model import BaseModel
 from models import storage
 import os
 import json
+from models.amenity  import Amenity
 """Module: test_file_storage """
 
 
@@ -14,6 +15,7 @@ class TestFileStorage(unittest.TestCase):
         """instantiate class"""
         self.cls = FileStorage()
         self.bm = BaseModel()
+        self.amenity = Amenity()
 
     def test_attrs(self):
         """testing the attributes of FileStorage"""
@@ -81,6 +83,39 @@ class TestFileStorage(unittest.TestCase):
                     got = True
         self.assertTrue(expected, got)
 
+    def test_save_amenity(self):
+        """ save amenity to json file"""
+        os.remove("./file.json")
+        self.amenity.save()
+        self.assertTrue(os.path.isfile("./file.json"))
+
+    def test_all(self):
+        """ run all command"""
+        expected = True
+        got = False
+        _id = self.amenity.id
+        all_dicts = storage.all()
+        for key in all_dicts.keys():
+            if _id in key:
+                got = True
+        self.assertTrue(expected, got)
+
+    def test_read_amenity(self):
+        """ read emnity from file"""
+        expected = True
+        got = False
+        os.remove("./file.json")
+        self.amenity.save()
+        _id = self.amenity.id
+        with open("./file.json", mode='r', encoding='utf-8') as _file:
+            _dict = json.load(_file)
+        for key in _dict.keys():
+            if _id in key:
+                actual = True
+        self.assertTrue(expected, got)
+
+
+    print("===============================================")
 
     def test_module_doc(self):
         """ module documentation """
