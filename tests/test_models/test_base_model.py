@@ -62,8 +62,14 @@ class TestBaseModel(unittest.TestCase):
     def test_to_json(self):
         """to_json() documentation"""
         expected = True
-        got = len(BaseModel.to_json.__doc__) > 0
-        self.assertTrue(expected, got)
+        got = True
+        new_bm = BaseModel()
+        _json = new_bm.to_json()
+        for k, v in _json.items():
+            if type(k) is not str:
+                input("k: {}\nv: {}".format(type(k), v))
+                got = False
+        self.assertEqual(expected, got)
 
     def test_str_doc(self):
         """__str__() documentation"""
