@@ -44,8 +44,8 @@ class BaseModel:
     def sanitize_deserialization(self, kwargs):
         """deserializes datetime attributes if necessary"""
         if not isinstance(kwargs["created_at"], datetime):
-                kwargs["created_at"] = datetime.strptime(
-                    kwargs["created_at"], self.dt_format)
+            kwargs["created_at"] = datetime.strptime(
+                kwargs["created_at"], self.dt_format)
 
         if "updated_at" in kwargs:
             if not isinstance(kwargs["updated_at"], datetime):

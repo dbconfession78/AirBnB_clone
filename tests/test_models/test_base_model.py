@@ -57,7 +57,7 @@ class TestBaseModel(unittest.TestCase):
         """__init__() documentation"""
         expected = True
         got = len(BaseModel.__init__.__doc__) > 0
-        self. assertEqual(expected, got)
+        self.assertEqual(expected, got)
 
     def test_to_json(self):
         """to_json() documentation"""

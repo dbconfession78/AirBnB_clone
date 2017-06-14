@@ -59,7 +59,7 @@ class TestUser(unittest.TestCase):
         """__init__() documentation"""
         expected = True
         got = len(User.__init__.__doc__) > 0
-        self. assertEqual(expected, got)
+        self.assertEqual(expected, got)
 
     def test_str_doc(self):
         """__str__() documentation"""
