@@ -50,6 +50,21 @@ class TestFileStorage(unittest.TestCase):
             got = False
         self.assertTrue(expected, got)
 
+    def test_reload(self):
+        """ reload() method"""
+        expected = True
+        got = False
+        os.remove("./file.json")
+        self.bm.save()
+        _id = self.bm.id
+        fs = FileStorage()
+        fs.reload()
+        all_dicts = fs.all()
+        for key in all_dicts.keys():
+            if _id in key:
+                got = True
+        self.assertTrue(expected, got)
+
 
     def test_module_doc(self):
         """ module documentation """
