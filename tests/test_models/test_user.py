@@ -10,43 +10,52 @@ class TestUser(unittest.TestCase):
     """TestUser class"""
     def setUp(self):
         """ instantiate class"""
-        self.cls = User()
+        self.user = User()
 
     def testattr(self):
         """ testing  attributes"""
-        self.assertTrue(hasattr(self.cls, "created_at"))
-        self.assertTrue(hasattr(self.cls, "id"))
-        self.assertFalse(hasattr(self.cls, "updated_at"))
-        self.assertFalse(hasattr(self.cls, "random_attr"))
+        self.assertTrue(hasattr(self.user, "created_at"))
+        self.assertTrue(hasattr(self.user, "id"))
+        self.assertFalse(hasattr(self.user, "updated_at"))
+        self.assertFalse(hasattr(self.user, "random_attr"))
 
-        self.assertTrue(hasattr(self.cls, "email"))
-        self.assertTrue(hasattr(self.cls, "password"))
-        self.assertTrue(hasattr(self.cls, "first_name"))
-        self.assertTrue(hasattr(self.cls, "last_name"))
+        self.assertTrue(hasattr(self.user, "email"))
+        self.assertTrue(hasattr(self.user, "password"))
+        self.assertTrue(hasattr(self.user, "first_name"))
+        self.assertTrue(hasattr(self.user, "last_name"))
 
-        self.assertEqual(self.cls.__class__.__name__, "User")
-        self.assertEqual(self.cls.first_name, "")
+        self.assertEqual(self.user.__class__.__name__, "User")
+        self.assertEqual(self.user.first_name, "")
 
-        self.cls.first_name = "Betty"
-        self.assertEqual(self.cls.first_name, "Betty")
+        self.user.first_name = "Betty"
+        self.assertEqual(self.user.first_name, "Betty")
+
+        self.user.last_name = "Kuredjian"
+        self.assertEqual(self.user.last_name, "Kuredjian")
+
+        self.user.email = "katya@holbertonschool.com"
+        self.assertEqual(self.user.email, "katya@holbertonschool.com")
+
+        self.user.password = "my_pw"
+        self.assertEqual(self.user.password, "my_pw")
 
     def test_method(self):
         """testing Amenity methods"""
-        self.cls.save()
-        self.assertTrue(hasattr(self.cls, "updated_at"))
+        self.user.save()
+        self.assertTrue(hasattr(self.user, "updated_at"))
 
     def test_string_format(self):
         """testing string formatting"""
         expected = "[{}] ({}) {}".format(
-            self.cls.__class__.__name__, str(
-                self.cls.id), self.cls.__dict__)
-        got = str(self.cls)
+            self.user.__class__.__name__, str(
+                self.user.id), self.user.__dict__)
+        got = str(self.user)
         self.assertEqual(expected, got)
 
     def test_module_doc(self):
         """ module documentation """
         expected = True
-        got = len(self.cls.__doc__) > 0
+        got = len(self.user.__doc__) > 0
         self.assertEqual(expected, got)
 
     def test_class_doc(self):
