@@ -113,23 +113,6 @@ class TestFileStorage(unittest.TestCase):
                 actual = True
         self.assertTrue(expected, got)
 
-    def test_reload(self):
-        """... checks proper usage of reload function"""
-        bm = BaseModel()
-        if os.path.exists("./file.json"):
-            os.remove("./file.json")
-        bm.save()
-        _id = self.bm.id
-        expected = True
-        got = False
-        new_store = FileStorage()
-        new_store.reload()
-        objects = new_store.all()
-        for k in objects.keys():
-            if _id in k:
-                got = True
-        self.assertTrue(expected, got)
-
     def test_module_doc(self):
         """ module documentation """
         expected = True
