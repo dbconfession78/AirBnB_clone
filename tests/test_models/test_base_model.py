@@ -4,6 +4,7 @@ Module: Unit Testing for BaseModel Class
 """
 import unittest
 from models.base_model import BaseModel
+import json
 
 
 class TestBaseModel(unittest.TestCase):
@@ -41,6 +42,20 @@ class TestBaseModel(unittest.TestCase):
         got = len(self.cls.__doc__) > 0
         self.assertEqual(expected, got)
 
+    def test_to_json(self):
+        """to_json"""
+        expected = True
+        got = True
+        new_bm = BaseModel()
+        _json = new_bm.to_json()
+
+        try:
+            json.dumps(_json)
+        except:
+            input()
+            got = False
+        self.assertEqual(expected, got)
+
     def test_class_doc(self):
         """class documentation"""
         expected = True
@@ -59,16 +74,10 @@ class TestBaseModel(unittest.TestCase):
         got = len(BaseModel.__init__.__doc__) > 0
         self.assertEqual(expected, got)
 
-    def test_to_json(self):
+    def test_to_json_doc(self):
         """to_json() documentation"""
         expected = True
-        got = True
-        new_bm = BaseModel()
-        _json = new_bm.to_json()
-        for k, v in _json.items():
-            if type(k) is not str:
-                input("k: {}\nv: {}".format(type(k), v))
-                got = False
+        got = len(BaseModel.to_json.__doc__) > 0
         self.assertEqual(expected, got)
 
     def test_str_doc(self):
