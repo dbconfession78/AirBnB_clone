@@ -4,7 +4,6 @@ Module: Unit Testing for BaseModel Class
 """
 import unittest
 from models.base_model import BaseModel
-import json
 
 
 class TestBaseModel(unittest.TestCase):
@@ -44,16 +43,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_to_json(self):
         """to_json"""
-        expected = True
-        got = True
-        new_bm = BaseModel()
-        _json = new_bm.to_json()
-
-        try:
-            serial = json.dumps(_json)
-        except:
-            got = False
-        self.assertTrue(expected == got)
+        bm = BaseModel();
+        self.assertIsInstance(bm.to_json(), dict)
 
     def test_class_doc(self):
         """class documentation"""
