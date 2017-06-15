@@ -50,10 +50,10 @@ class TestBaseModel(unittest.TestCase):
         _json = new_bm.to_json()
 
         try:
-            json.dumps(_json)
+            serial = json.dumps(_json)
         except:
             got = False
-        self.assertEqual(expected, got)
+        self.assertTrue(expected == got)
 
     def test_class_doc(self):
         """class documentation"""
