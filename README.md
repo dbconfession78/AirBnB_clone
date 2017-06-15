@@ -1,5 +1,5 @@
 # AirBnB_clone
-
+# <img src="https://github.com/johncoleman83/AirBnB_clone/blob/master/dev/HBTN-hbnb-Final.png" width="160" height=auto />
 ## project description:
 
 This project is a team work done while the authors were students at Holberton School to cover all the fundamentals concepts of the higher level programming track.   
@@ -18,12 +18,10 @@ The following commands have been implemented:
 ####     how to use it
 | Command  | Syntax                        |Definition                                    |  
 |:-------: | ------------------------------|----------------|
-| `help`   |`help `<command>`               |to get help about other commands.             |  
+| `help`   |`help` `<command>`               |to get help about other commands.             |  
 | `quit`   |`quit`                         |or `EOF` (end of file) to terminate session.   | 
 | `create` |`create` `<class name>`                    |creates an object |
 |`show`    |`show` `<class name>`                      |prints the string representation of an object|
 | `destroy`|`destroy` `<class name>` `<id>`      |deletes an object|
-|`all`     |`all `<class name>`              |shows all representations of objects|
+|`all`     |`all` `<class name>`              |shows all representations of objects|
 |`update`  |`update` `<class name>` `<id>` `<attr key>` `<attr val>`||
-
-####     examples
