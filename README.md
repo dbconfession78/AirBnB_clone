@@ -1,5 +1,5 @@
 # AirBnB_clone
-![alt text](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/263/HBTN-hbnb-Final.png)
+![alt text](https://github.com/johncoleman83/AirBnB_clone/raw/master/dev/HBTN-hbnb-Final.png)
 ## project description:
 
 This project is a team work done while the authors were students at Holberton School to cover all the fundamentals concepts of the higher level programming track.   
