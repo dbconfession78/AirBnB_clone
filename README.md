@@ -1,5 +1,5 @@
 # AirBnB_clone
-![alt text](https://github.com/johncoleman83/AirBnB_clone/raw/master/dev/HBTN-hbnb-Final.png)
+# <img src="https://github.com/johncoleman83/AirBnB_clone/blob/master/dev/HBTN-hbnb-Final.png" width="160" height=auto />
 ## project description:
 
 This project is a team work done while the authors were students at Holberton School to cover all the fundamentals concepts of the higher level programming track.   
