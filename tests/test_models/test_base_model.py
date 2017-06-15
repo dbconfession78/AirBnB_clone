@@ -43,8 +43,15 @@ class TestBaseModel(unittest.TestCase):
 
     def test_to_json(self):
         """to_json"""
-        bm = BaseModel();
-        self.assertIsInstance(bm.to_json(), dict)
+        bm = BaseModel()
+        my_model_json = bm.to_json()
+        actual = 1
+        try:
+            serialized = json.dumps(my_model_json)
+        except:
+            input()
+            actual = 0
+        self.assertTrue(1 == actual)
 
     def test_class_doc(self):
         """class documentation"""
