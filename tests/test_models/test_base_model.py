@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 Module: Unit Testing for BaseModel Class
 """
@@ -41,6 +42,11 @@ class TestBaseModel(unittest.TestCase):
         got = len(self.cls.__doc__) > 0
         self.assertEqual(expected, got)
 
+    def test_to_json(self):
+        """to_json"""
+        _json = self.cls.to_json()
+        self.assertIsNotNone(_json.get("id"))
+
     def test_class_doc(self):
         """class documentation"""
         expected = True
@@ -57,9 +63,9 @@ class TestBaseModel(unittest.TestCase):
         """__init__() documentation"""
         expected = True
         got = len(BaseModel.__init__.__doc__) > 0
-        self. assertEqual(expected, got)
+        self.assertEqual(expected, got)
 
-    def test_to_json(self):
+    def test_to_json_doc(self):
         """to_json() documentation"""
         expected = True
         got = len(BaseModel.to_json.__doc__) > 0
