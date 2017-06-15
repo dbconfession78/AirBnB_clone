@@ -52,7 +52,6 @@ class TestBaseModel(unittest.TestCase):
         try:
             json.dumps(_json)
         except:
-            input()
             got = False
         self.assertEqual(expected, got)
 
