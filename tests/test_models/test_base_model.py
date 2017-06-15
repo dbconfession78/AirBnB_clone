@@ -44,8 +44,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_to_json(self):
         """to_json"""
-        self.assertTrue(hasattr(self.cls, "id"))
-        self.assertTrue(hasattr(self.cls, "created_at"))
+        _json = self.cls.to_json()
+        self.assertIsNotNone(_json.get("id"))
 
     def test_class_doc(self):
         """class documentation"""
