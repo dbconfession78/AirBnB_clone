@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 Module: Unit Testing for BaseModel Class
 """
@@ -43,15 +44,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_to_json(self):
         """to_json"""
-        bm = BaseModel()
-        my_model_json = bm.to_json()
-        actual = 1
-        try:
-            serialized = json.dumps(my_model_json)
-        except:
-            input()
-            actual = 0
-        self.assertTrue(1 == actual)
+        self.assertTrue(hasattr(self.cls, "id"))
+        self.assertTrue(hasattr(self.cls, "created_at"))
 
     def test_class_doc(self):
         """class documentation"""
