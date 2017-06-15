@@ -12,7 +12,7 @@ class TestUser(unittest.TestCase):
         """ instantiate class"""
         self.user = User()
 
-    def testattr(self):
+    def test_attr(self):
         """ testing  attributes"""
         self.assertTrue(hasattr(self.user, "created_at"))
         self.assertTrue(hasattr(self.user, "id"))
@@ -30,12 +30,18 @@ class TestUser(unittest.TestCase):
         self.user.first_name = "Betty"
         self.assertEqual(self.user.first_name, "Betty")
 
+        # last name
+        self.assertEqual(self.user.last_name, "")
         self.user.last_name = "Kuredjian"
         self.assertEqual(self.user.last_name, "Kuredjian")
 
+        # email
+        self.assertEqual(self.user.email, "")
         self.user.email = "katya@holbertonschool.com"
         self.assertEqual(self.user.email, "katya@holbertonschool.com")
 
+        # pw
+        self.assertEqual(self.user.password, "")
         self.user.password = "my_pw"
         self.assertEqual(self.user.password, "my_pw")
 
