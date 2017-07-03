@@ -2,7 +2,7 @@ div.container section.filters {
 	border: 1px solid #DDDDDD;
 	height: 70px;
 	width: 100%;
-	color: white;
+	line-height: 10px;
 }
 
 div.container section.filters button {
@@ -21,4 +21,29 @@ div.container section.filters button {
 
 div.container section.filters button:hover {
 	opacity: 0.9;
+}
+
+div.container section.filters div.locations {
+	border-right: 1px solid #DDDDDD;
+	height: 100%;
+	width: 25%;
+	float: left;
+	padding-left: 50px;
+}
+
+div.container section.filters div.amenities {
+	height: 100%;
+	width: 25%;
+	float: left;
+	padding-left: 50px;
+}
+
+h3 {
+	font-weight: 600;
+
+}
+
+h4 {
+	font-weight: 400;
+	font-size: 14px;
 }
