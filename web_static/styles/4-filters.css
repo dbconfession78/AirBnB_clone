@@ -10,7 +10,7 @@ div.container section.filters button {
 	color: white;
 	background-color: #FF5A5F;
 	border: none;
-	border-radius:
+	border-radius: 4px;
 	height: 48px;
 	width: 20%; 
 	float: right;
@@ -22,3 +22,4 @@ div.container section.filters button {
 div.container section.filters button:hover {
 	opacity: 0.9;
 }
+
