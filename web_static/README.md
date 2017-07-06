@@ -7,7 +7,7 @@ The focus of this project is to learn:
 * what HTML is
 * how to create an HTML page
 * what a markup language is
-* what the DOM DOM
+* what the DOM is
 * what an element / tag is
 * what an attribute is
 * how does the browser load a webpage
@@ -23,7 +23,7 @@ The focus of this project is to learn:
 
 ## Helpful Links
 * <a href="http://learn.shayhowe.com/html-css/">Learn to Code HTML & CSS</a>
-* <a href="https://www.codecademy.com/articles/html-inline-styles">Specifics on CSS Specificity</a>
+* <a href="https://www.codecademy.com/articles/html-inline-styles">Inline Styles in HTML</a>
 * <a href="https://css-tricks.com/specifics-on-css-specificity/">Specifics on CSS Specificity</a>
 * <a href="http://www.standardista.com/wp-content/uploads/2012/01/specificity3.pdf">CSS Specificity</a>
 * <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML">Introduction to HTML</a>
@@ -33,7 +33,14 @@ The focus of this project is to learn:
 
 
 ## File Descriptions
-`TODO`:
+- The index.html files, numbered 0 through 8 each build on the previous expanding knowledge of css and html.
+- The 'images' folder contains icon images used on the site
+- The 'styles' folder contains files necessary for html style formatting:
+  - header.css
+  - footer.css
+  - common.css
+  - filter.css
+  - places.css
 
 ## Author
 Stuart Kuredjian
